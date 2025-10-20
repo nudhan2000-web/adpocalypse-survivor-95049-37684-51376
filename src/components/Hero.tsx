@@ -105,18 +105,18 @@ const Hero = () => {
           >
             The Last Ad-pocalypse
           </p>
-          <div className="inline-block mb-8 md:mb-12 mx-4 px-4 md:px-6 py-2 md:py-3 bg-primary/10 border border-primary/30 rounded-md backdrop-blur-sm">
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground font-bold tracking-wider">
+          <div className="inline-block mb-8 md:mb-12 mx-4 px-4 md:px-6 py-2 md:py-3 bg-primary/90 border border-primary rounded-md backdrop-blur-sm">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-primary-foreground font-bold tracking-wider">
               GO VIRAL OR GO DEAD!
             </p>
           </div>
           
           {/* CTA Button with Enhanced Animation */}
-          <div ref={ctaRef} className="flex flex-col items-center gap-3 md:gap-4 px-4">
+          <div id="register" ref={ctaRef} className="flex flex-col items-center gap-3 md:gap-4 px-4">
             <Button
               onClick={() => setModalOpen(true)}
               size="lg"
-              className="group relative bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg md:text-xl px-10 md:px-16 py-7 md:py-9 rounded-xl transition-all duration-500 hover:scale-105 uppercase tracking-wide overflow-hidden w-full sm:w-auto"
+              className="group relative bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-16 py-6 sm:py-7 md:py-9 rounded-xl transition-all duration-500 hover:scale-105 uppercase tracking-wide overflow-hidden w-full sm:w-auto"
               style={{ boxShadow: '0 10px 30px hsl(var(--primary) / 0.4)' }}
             >
               <span className="relative z-10">Register Now</span>

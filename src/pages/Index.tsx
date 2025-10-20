@@ -36,12 +36,22 @@ const Index = () => {
   return (
     <main className="relative">
       {/* Sticky Back Button */}
-      <a 
+      <a
         href="https://intemstellar-nu.vercel.app/"
         className="fixed top-4 left-4 z-50"
       >
-        <button className="px-6 py-2.5 bg-primary/90 hover:bg-primary text-primary-foreground font-semibold rounded-lg backdrop-blur-sm border border-primary/20 transition-all duration-300 hover:scale-105 shadow-lg">
+        <button className="px-4 sm:px-6 py-2 sm:py-2.5 bg-primary/90 hover:bg-primary text-primary-foreground font-semibold text-sm sm:text-base rounded-lg backdrop-blur-sm border border-primary/20 transition-all duration-300 hover:scale-105 shadow-lg">
           Back
+        </button>
+      </a>
+
+      {/* Sticky Register Button */}
+      <a
+        href="#register"
+        className="fixed top-4 right-4 z-50"
+      >
+        <button className="px-4 sm:px-6 py-2 sm:py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm sm:text-base rounded-lg backdrop-blur-sm border border-primary/20 transition-all duration-300 hover:scale-105 shadow-lg">
+          Register
         </button>
       </a>
       
