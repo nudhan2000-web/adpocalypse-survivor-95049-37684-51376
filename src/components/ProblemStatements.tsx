@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FileText, TrendingUp, Leaf, Shield, Users } from "lucide-react";
+import { FileText, TrendingUp, Leaf, Shield, Users, ChevronDown } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,6 +79,7 @@ const problems = [
 
 const ProblemStatements = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const cards = sectionRef.current?.querySelectorAll('.problem-card');
@@ -86,13 +87,13 @@ const ProblemStatements = () => {
     if (cards) {
       gsap.fromTo(
         cards,
-        { y: 80, opacity: 0, scale: 0.95 },
+        { y: 60, opacity: 0, scale: 0.97 },
         {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
+          duration: 0.6,
+          stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -104,73 +105,107 @@ const ProblemStatements = () => {
     }
   }, []);
 
+  const toggleOpen = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section
       ref={sectionRef}
       id="problem-statements"
-      className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background"
+      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background z-0"></div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-block px-4 md:px-6 py-2 md:py-3 bg-accent/20 border-2 border-accent rounded-md mb-4 md:mb-6">
-            <span className="text-accent font-bold tracking-wider text-sm md:text-base uppercase">Caselet Challenge</span>
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="inline-block px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 bg-accent/20 border-2 border-accent rounded-md mb-3 sm:mb-4 md:mb-6">
+            <span className="text-accent font-bold tracking-wider text-xs sm:text-sm md:text-base uppercase">Caselet Challenge</span>
           </div>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 text-chromatic inline-block animate-reveal px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 text-chromatic inline-block px-2 sm:px-4"
             style={{ textShadow: 'var(--shadow-blood)' }}
           >
             PROBLEM STATEMENTS
           </h2>
-          <div className="h-1 w-24 md:w-32 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 md:mb-8"></div>
-          <p className="text-lg md:text-xl lg:text-2xl text-primary font-bold">
+          <div className="h-1 w-20 sm:w-24 md:w-32 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-4 sm:mb-6 md:mb-8"></div>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary font-bold px-4">
             Marketing in the Apocalypse
           </p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
+            const isOpen = openIndex === index;
+
             return (
               <div
                 key={index}
-                className="problem-card p-6 md:p-8 lg:p-10 bg-card/80 backdrop-blur-sm rounded-lg border-2 border-primary/30 hover:border-accent/50 transition-all duration-500 group"
+                className="problem-card bg-card/80 backdrop-blur-sm rounded-lg border-2 border-primary/30 hover:border-accent/50 transition-all duration-500 overflow-hidden"
                 style={{ boxShadow: '0 10px 40px hsl(var(--primary) / 0.2)' }}
               >
-                <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6 mb-6">
-                  <div className="flex-shrink-0">
-                    <div className="inline-block p-3 md:p-4 bg-accent/20 rounded-full group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:text-primary transition-colors" />
+                <button
+                  onClick={() => toggleOpen(index)}
+                  className="w-full p-4 sm:p-5 md:p-6 lg:p-8 text-left transition-all duration-300 hover:bg-card/50"
+                  aria-expanded={isOpen}
+                  aria-controls={`problem-content-${index}`}
+                >
+                  <div className="flex items-start gap-3 sm:gap-4 md:gap-6">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className={`inline-block p-2.5 sm:p-3 md:p-4 rounded-full transition-all duration-300 ${
+                        isOpen ? 'bg-primary/20' : 'bg-accent/20'
+                      }`}>
+                        <Icon className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transition-colors duration-300 ${
+                          isOpen ? 'text-primary' : 'text-accent'
+                        }`} />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                      <div>
-                        <div className="inline-block px-3 py-1 bg-primary/20 rounded-md mb-2">
-                          <span className="text-primary font-bold text-xs md:text-sm">
-                            Problem Statement ID: {problem.id}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col gap-2 sm:gap-3 mb-2 sm:mb-3">
+                        <div className="inline-block self-start px-2.5 sm:px-3 py-1 bg-primary/20 rounded-md">
+                          <span className="text-primary font-bold text-xs sm:text-sm">
+                            {problem.id}
                           </span>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground leading-tight pr-8 sm:pr-10">
                           {problem.title}
                         </h3>
-                        <p className="text-sm md:text-base text-accent font-semibold italic">
-                          Theme: {problem.theme}
+                        <p className="text-xs sm:text-sm md:text-base text-accent font-semibold italic">
+                          {problem.theme}
                         </p>
                       </div>
                     </div>
 
-                    <div className="space-y-3 md:space-y-4">
-                      {problem.description.map((para, i) => (
-                        <p
-                          key={i}
-                          className="text-sm sm:text-base md:text-lg leading-relaxed text-foreground/90"
-                        >
-                          {para}
-                        </p>
-                      ))}
+                    <div className="flex-shrink-0 mt-1">
+                      <ChevronDown
+                        className={`w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </div>
+                  </div>
+                </button>
+
+                <div
+                  id={`problem-content-${index}`}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-4 sm:px-5 md:px-6 lg:px-8 pb-4 sm:pb-5 md:pb-6 lg:pb-8 pt-2">
+                    <div className="pl-0 sm:pl-10 md:pl-14 lg:pl-16">
+                      <div className="space-y-3 sm:space-y-4 md:space-y-5">
+                        {problem.description.map((para, i) => (
+                          <p
+                            key={i}
+                            className="text-sm sm:text-base md:text-lg leading-relaxed text-foreground/90"
+                          >
+                            {para}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -179,11 +214,9 @@ const ProblemStatements = () => {
           })}
         </div>
 
-        <div className="mt-12 md:mt-16 text-center">
-          <div
-            className="inline-block px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-primary/20 to-accent/20 border-2 border-primary/40 rounded-lg backdrop-blur-sm"
-          >
-            <p className="text-base md:text-lg lg:text-xl text-foreground font-semibold">
+        <div className="mt-8 sm:mt-12 md:mt-16 text-center px-4">
+          <div className="inline-block px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 bg-gradient-to-r from-primary/20 to-accent/20 border-2 border-primary/40 rounded-lg backdrop-blur-sm">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground font-semibold">
               Choose your battlefield and strategize your survival plan!
             </p>
           </div>
