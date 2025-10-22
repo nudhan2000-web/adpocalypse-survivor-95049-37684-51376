@@ -119,9 +119,6 @@ const ProblemStatements = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <div className="inline-block px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 bg-accent/20 border-2 border-accent rounded-md mb-3 sm:mb-4 md:mb-6">
-            <span className="text-accent font-bold tracking-wider text-xs sm:text-sm md:text-base uppercase">Caselet Challenge</span>
-          </div>
           <h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 text-chromatic inline-block px-2 sm:px-4"
             style={{ textShadow: 'var(--shadow-blood)' }}

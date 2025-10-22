@@ -8,18 +8,15 @@ gsap.registerPlugin(ScrollTrigger);
 const coordinators = [
   {
     name: "Akshitha Jyothi D",
-    phone: "63829 82045",
-    year: "3rd Year"
+    phone: "63829 82045"
   },
   {
     name: "Lalith J",
-    phone: "97913 82086",
-    year: "2nd Year"
+    phone: "97913 82086"
   },
   {
     name: "Kamalika N M",
-    phone: "90428 87720",
-    year: "2nd Year"
+    phone: "90428 87720"
   }
 ];
 
@@ -72,13 +69,9 @@ const Coordinators = () => {
                 {coordinator.name}
               </h3>
               
-              <div className="flex items-center gap-2 text-primary mb-2">
+              <div className="flex items-center gap-2 text-primary">
                 <Phone className="w-4 h-4" />
                 <span className="text-base md:text-lg">{coordinator.phone}</span>
-              </div>
-              
-              <div className="inline-block px-3 py-1 bg-background rounded-md">
-                <span className="text-xs md:text-sm text-muted-foreground">{coordinator.year}</span>
               </div>
             </a>
           ))}
