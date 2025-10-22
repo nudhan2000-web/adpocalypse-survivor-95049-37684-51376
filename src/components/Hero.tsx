@@ -1,14 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
 import heroApocalypse from "@/assets/hero-new-apocalypse.webp";
-import RegistrationModal from "./RegistrationModal";
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
@@ -112,16 +110,17 @@ const Hero = () => {
           </div>
           
           {/* CTA Button with Enhanced Animation */}
-          <div id="register" ref={ctaRef} className="flex flex-col items-center gap-3 md:gap-4 px-4">
-            <Button
-              onClick={() => setModalOpen(true)}
-              size="lg"
-              className="group relative bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-16 py-6 sm:py-7 md:py-9 rounded-xl transition-all duration-500 hover:scale-105 uppercase tracking-wide overflow-hidden w-full sm:w-auto"
-              style={{ boxShadow: '0 10px 30px hsl(var(--primary) / 0.4)' }}
-            >
-              <span className="relative z-10">Register Now</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            </Button>
+          <div ref={ctaRef} className="flex flex-col items-center gap-3 md:gap-4 px-4">
+            <a href="#problem-statements" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="group relative bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-16 py-6 sm:py-7 md:py-9 rounded-xl transition-all duration-500 hover:scale-105 uppercase tracking-wide overflow-hidden w-full"
+                style={{ boxShadow: '0 10px 30px hsl(var(--primary) / 0.4)' }}
+              >
+                <span className="relative z-10">Problem Statements</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              </Button>
+            </a>
             <p className="text-xs sm:text-sm text-muted-foreground text-center">Limited slots • Early bird registration open</p>
           </div>
         </div>
@@ -136,8 +135,6 @@ const Hero = () => {
         {/* Bottom Fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 z-15 pointer-events-none bg-gradient-to-t from-background to-transparent"></div>
       </section>
-
-      <RegistrationModal open={modalOpen} onOpenChange={setModalOpen} />
     </>
   );
 };

@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import RegistrationModal from "./RegistrationModal";
 import zombiesFog from "@/assets/zombies-fog.jpg";
 import wheel1 from "@/assets/wheel-1.jpg";
 
 const CTASection = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
-    <>
-      <section className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 overflow-hidden bg-gradient-to-b from-muted to-background">
+    <section className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 overflow-hidden bg-gradient-to-b from-muted to-background">
         {/* Background */}
         <div 
           className="absolute inset-0 z-0 opacity-15"
@@ -42,14 +37,20 @@ const CTASection = () => {
                 The clock is ticking. Brands are dying. Will your creativity be the cure, or will you join the marketing undead?
               </p>
 
-              <Button
-                onClick={() => setModalOpen(true)}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg md:text-xl px-10 md:px-12 py-6 md:py-8 rounded-lg transition-all duration-300 hover:scale-105 uppercase tracking-wide w-full md:w-auto"
-                style={{ boxShadow: '0 10px 30px hsl(var(--primary) / 0.4)' }}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd8TDtq1pUg1u3-djlmO8x2F_xqgZh-0z7w9Na-yuRBCi1Kbw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full md:w-auto"
               >
-                REGISTER YOUR TEAM
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg md:text-xl px-10 md:px-12 py-6 md:py-8 rounded-lg transition-all duration-300 hover:scale-105 uppercase tracking-wide w-full"
+                  style={{ boxShadow: '0 10px 30px hsl(var(--primary) / 0.4)' }}
+                >
+                  REGISTER YOUR TEAM
+                </Button>
+              </a>
 
               <p className="mt-4 md:mt-6 text-xs md:text-sm text-muted-foreground">
                 Limited slots available. Register now before extinction!
@@ -58,9 +59,6 @@ const CTASection = () => {
           </div>
         </div>
       </section>
-
-      <RegistrationModal open={modalOpen} onOpenChange={setModalOpen} />
-    </>
   );
 };
 
